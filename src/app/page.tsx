@@ -1,9 +1,17 @@
-import Image from 'next/image';
+import apiCats from '@/api';
+import { Card } from '@/components/Card';
+import { ICat } from '@/interfaces/ICat';
 
-export default function Home() {
+export default async function Home() {
+  const { data: cats } = await apiCats.get<ICat[]>('/images/search?limit=10&has_breeds=true');
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <h1>hi</h1>
-    </div>
+    <main className="flex justify-center flex-col items-center">
+      <h1 className="text-6xl font-bold mt-10">CATKNOW</h1>
+
+      <section>
+        <Card />
+      </section>
+    </main>
   );
 }
