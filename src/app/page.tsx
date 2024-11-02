@@ -1,9 +1,45 @@
+'use client';
+import { useEffect, useState } from 'react';
 import apiCats from '@/api';
 import { Card } from '@/components/Card';
 import { ICat } from '@/interfaces/ICat';
 
-export default async function Home() {
-  const { data: cats } = await apiCats.get<ICat[]>('/images/search?limit=10&has_breeds=true');
+const INITIAL_LIMIT = 10;
+
+export default function Home() {
+  const [cats, setCats] = useState<ICat[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [offset, setOffset] = useState<number>(0);
+
+  const fetchCats = async (limit: number, offset: number) => {
+    setLoading(true);
+    const { data } = await apiCats.get<ICat[]>(
+      `/images/search?limit=${limit}&offset=${offset}&has_breeds=true`
+    );
+    setCats((prevCats) => [...prevCats, ...data]);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchCats(INITIAL_LIMIT, offset);
+  }, [offset]);
+
+  const handleScroll = () => {
+    if (loading) return;
+    if (
+      window.innerHeight + document.documentElement.scrollTop + 1 >=
+      document.documentElement.scrollHeight
+    ) {
+      setOffset((prevOffset) => prevOffset + INITIAL_LIMIT);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [loading]);
 
   return (
     <main className="flex justify-center flex-col items-center">
@@ -19,6 +55,8 @@ export default async function Home() {
           />
         ))}
       </section>
+
+      {loading && <p>Loading more cats...</p>}
     </main>
   );
 }
