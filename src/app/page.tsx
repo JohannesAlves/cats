@@ -71,6 +71,7 @@ export default function Home() {
           {cats.map((cat) => (
             <Card
               key={`cat-${cat.id}`}
+              id={cat.id}
               description={cat.breeds[0]?.origin}
               imageUrl={cat.url}
               title={cat.breeds[0]?.name}

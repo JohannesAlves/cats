@@ -16,6 +16,7 @@ export interface IBreed {
   country_code: string;
   life_span: string;
   wikipedia_url: string;
+  description?: string;
 }
 
 export interface Weight {
