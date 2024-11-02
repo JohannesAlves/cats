@@ -9,8 +9,15 @@ export default async function Home() {
     <main className="flex justify-center flex-col items-center">
       <h1 className="text-6xl font-bold mt-10">CATKNOW</h1>
 
-      <section>
-        <Card />
+      <section className="grid grid-cols-4 gap-10 p-10">
+        {cats.map((cat) => (
+          <Card
+            key={`cat-${cat.id}`}
+            description={cat.breeds[0].origin}
+            imageUrl={cat.url}
+            title={cat.breeds[0].name}
+          />
+        ))}
       </section>
     </main>
   );
