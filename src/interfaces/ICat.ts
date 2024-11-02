@@ -22,3 +22,8 @@ export interface Weight {
   imperial: string;
   metric: string;
 }
+
+export interface ICategory {
+  id: number;
+  name: string;
+}
