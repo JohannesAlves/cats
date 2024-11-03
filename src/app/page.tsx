@@ -56,10 +56,10 @@ export default function Home() {
   };
 
   return (
-    <main className="flex justify-center flex-col items-center bg-gray-100">
+    <main className="flex justify-center flex-col items-center bg-gray-100 min-h-[100vh]">
       <h1 className="text-6xl font-bold mt-10">CATKNOW</h1>
 
-      <section className="flex flex-col gap-4 p-10">
+      <section className="flex flex-col gap-4 p-10 min-h-[100vh]">
         <div>
           <CategorieButtons
             activeCategory={activeCategory}
