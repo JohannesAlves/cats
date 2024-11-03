@@ -3,7 +3,7 @@ import apiCats from '@/api';
 import { ICat } from '@/interfaces/ICat';
 import { useScroll } from '@/hooks/useScroll';
 
-const INITIAL_LIMIT = 10;
+const INITIAL_LIMIT = 16;
 
 export const useHomeModel = () => {
   const [cats, setCats] = useState<ICat[]>([]);
