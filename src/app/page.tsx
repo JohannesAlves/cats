@@ -56,7 +56,7 @@ export default function Home() {
   };
 
   return (
-    <main className="flex justify-center flex-col items-center">
+    <main className="flex justify-center flex-col items-center bg-gray-100">
       <h1 className="text-6xl font-bold mt-10">CATKNOW</h1>
 
       <section className="flex flex-col gap-4 p-10">
