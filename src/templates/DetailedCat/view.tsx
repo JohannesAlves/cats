@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export const DetailedCatView = ({ data }: { data: ICat }) => {
   return (
-    <div className="flex justify-center gap-10 items-center py-10 bg-gray-100 min-h-screen">
+    <div className="flex flex-wrap justify-center gap-10 items-center py-10 bg-gray-100 min-h-screen">
       <div className="w-full max-w-md mb-6 rounded-xl border-2 border-black">
         <Image
           src={data.url}
@@ -15,7 +15,7 @@ export const DetailedCatView = ({ data }: { data: ICat }) => {
         />
       </div>
 
-      <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
+      <div className="lg:bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
         <h1 className="text-2xl font-bold text-gray-800 mb-4">Name: {data.breeds[0]?.name}</h1>
         <p className="text-gray-600 mb-4">{data.breeds[0]?.description}</p>
 
