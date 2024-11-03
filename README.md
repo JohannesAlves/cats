@@ -2,7 +2,17 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+Initially install the packages:
+
+```bash
+yarn add
+# or
+npm install
+# or
+pnpm install
+```
+
+Run the development server:
 
 ```bash
 npm run dev
@@ -13,3 +23,11 @@ pnpm dev
 # or
 bun dev
 ```
+
+### Technologies Used
+
+- Axios - To make fetchs.
+- Next - SSR.
+- Eslint - Keep a good lint of code.
+- Typescript - To have all typed to improve the DX (Developer Experience).
+- Tailwind - Good styling tool.
