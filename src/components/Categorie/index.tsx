@@ -25,7 +25,7 @@ export const CategorieButtons: React.FC<IProps> = ({ activeCategory, setActiveCa
   }, []);
 
   return (
-    <div className="flex flex-wrap space-x-2">
+    <div className="flex flex-wrap gap-2 sm:gap-3 justify-center md:justify-start">
       {categories.map((category) => (
         <button
           onClick={() => setActiveCategory(category.id)}
