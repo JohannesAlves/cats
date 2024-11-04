@@ -29,6 +29,7 @@ export const Card: React.FC<IProps> = ({ id, imageUrl, title, description }) => 
           src={imageUrl}
           alt={title}
           fill
+          sizes="(min-width: 640px) 640px, 100vw"
           objectFit="cover"
           onLoadingComplete={() => setIsLoading(false)}
           className={`transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
