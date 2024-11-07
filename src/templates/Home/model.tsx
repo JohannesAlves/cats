@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import apiCats from '@/api';
-import { ICat } from '@/interfaces/ICat';
+import { ICat, ICategory } from '@/interfaces/ICat';
 import { useScroll } from '@/hooks/useScroll';
 
 const INITIAL_LIMIT = 16;
@@ -10,6 +10,16 @@ export const useHomeModel = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [offset, setOffset] = useState<number>(0);
   const [activeCategory, setActiveCategory] = useState<number | null>(null);
+  const [categories, setCategories] = useState<ICategory[]>([]);
+
+  const fetchCategoriesList = useCallback(async () => {
+    try {
+      const { data } = await apiCats.get<ICategory[]>(`/categories`);
+      setCategories(data);
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+    }
+  }, []);
 
   const fetchCats = async (limit: number, offset: number, categoryId?: number) => {
     setLoading(true);
@@ -29,6 +39,10 @@ export const useHomeModel = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchCategoriesList();
+  }, [fetchCategoriesList]);
 
   useEffect(() => {
     if (!activeCategory) {
@@ -53,6 +67,7 @@ export const useHomeModel = () => {
   };
 
   return {
+    categories,
     cats,
     loading,
     activeCategory,

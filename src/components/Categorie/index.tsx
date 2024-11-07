@@ -1,29 +1,18 @@
-import apiCats from '@/api';
 import { ICategory } from '@/interfaces/ICat';
 import { capitalizeFirstLetter } from '@/utils/capitalizeFirstLetter';
-import React, { useCallback, useEffect, useState } from 'react';
+import React from 'react';
 
 interface IProps {
   activeCategory: number | null;
   setActiveCategory: (category: number) => void;
+  categories: ICategory[];
 }
 
-export const CategorieButtons: React.FC<IProps> = ({ activeCategory, setActiveCategory }) => {
-  const [categories, setCategories] = useState<ICategory[]>([]);
-
-  const fetchCategoriesList = useCallback(async () => {
-    try {
-      const { data } = await apiCats.get<ICategory[]>(`/categories`);
-      setCategories(data);
-    } catch (error) {
-      console.error('Error fetching categories:', error);
-    }
-  }, []);
-
-  useEffect(() => {
-    fetchCategoriesList();
-  }, []);
-
+export const CategorieButtons: React.FC<IProps> = ({
+  activeCategory,
+  setActiveCategory,
+  categories,
+}) => {
   return (
     <div className="flex flex-wrap gap-2 sm:gap-3 justify-center md:justify-start">
       {categories.map((category) => (

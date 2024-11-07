@@ -7,6 +7,7 @@ export const HomeView = ({
   cats,
   handleCategoryChange,
   loading,
+  categories = [],
 }: ReturnType<typeof useHomeModel>) => {
   return (
     <main className="flex justify-center flex-col items-center bg-gray-100 min-h-[100vh]">
@@ -15,6 +16,7 @@ export const HomeView = ({
       <section className="flex flex-col gap-4 p-10 min-h-[100vh]">
         <div>
           <CategorieButtons
+            categories={categories}
             activeCategory={activeCategory}
             setActiveCategory={handleCategoryChange}
           />
@@ -25,9 +27,9 @@ export const HomeView = ({
             <Card
               key={`cat-${cat.id}`}
               id={cat.id}
-              description={cat.breeds[0]?.origin}
+              description={cat.breeds && cat.breeds[0]?.origin}
               imageUrl={cat.url}
-              title={cat.breeds[0]?.name}
+              title={cat.breeds && cat.breeds[0]?.name}
             />
           ))}
         </div>
